@@ -1,5 +1,5 @@
 import { useAccount, useConnect, useDisconnect, useSwitchChain, useReadContract } from "wagmi"
-import { baseSepolia } from "wagmi/chains"
+import { base } from "wagmi/chains"
 import { formatUnits } from "viem"
 import { CONTRACTS } from "./lib/wagmi.js"
 
@@ -10,7 +10,7 @@ export default function App() {
   const { connect, connectors } = useConnect()
   const { disconnect } = useDisconnect()
   const { switchChain } = useSwitchChain()
-  const ok = chainId === baseSepolia.id
+  const ok = chainId === base.id
 
   const { data: bal } = useReadContract({
     address: CONTRACTS.usdc,
@@ -28,7 +28,7 @@ export default function App() {
             <span style={{ fontFamily:"monospace", color:"#0F0E0A", fontWeight:"bold" }}>P</span>
           </div>
           <span style={{ fontSize:20, fontWeight:300 }}>PachiPay</span>
-          <span style={{ fontFamily:"monospace", fontSize:10, color:"#7EC8A4", marginLeft:"auto" }}>LIVE ON BASE SEPOLIA</span>
+          <span style={{ fontFamily:"monospace", fontSize:10, color:"#7EC8A4", marginLeft:"auto" }}>LIVE ON BASE MAINNET</span>
         </div>
 
         {!isConnected ? (
@@ -45,17 +45,17 @@ export default function App() {
           </div>
         ) : !ok ? (
           <div style={{ background:"rgba(232,100,100,0.1)", border:"1px solid rgba(232,100,100,0.3)", padding:24 }}>
-            <p style={{ color:"#E87D6D", fontFamily:"monospace", marginBottom:16 }}>Wrong network — switch to Base Sepolia</p>
-            <button onClick={() => switchChain({ chainId: baseSepolia.id })}
+            <p style={{ color:"#E87D6D", fontFamily:"monospace", marginBottom:16 }}>Wrong network — switch to Base Mainnet</p>
+            <button onClick={() => switchChain({ chainId: base.id })}
               style={{ background:"#E8B86D", color:"#0F0E0A", border:"none", padding:"12px 24px", cursor:"pointer", fontFamily:"monospace" }}>
-              SWITCH TO BASE SEPOLIA
+              SWITCH TO BASE MAINNET
             </button>
           </div>
         ) : (
           <div>
             <div style={{ background:"rgba(126,200,164,0.06)", border:"1px solid rgba(126,200,164,0.2)", padding:20, marginBottom:24, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
               <div>
-                <p style={{ fontFamily:"monospace", fontSize:10, color:"rgba(126,200,164,0.7)", marginBottom:4 }}>CONNECTED - BASE SEPOLIA</p>
+                <p style={{ fontFamily:"monospace", fontSize:10, color:"rgba(126,200,164,0.7)", marginBottom:4 }}>CONNECTED - BASE MAINNET</p>
                 <p style={{ fontFamily:"monospace", color:"#7EC8A4" }}>{address?.slice(0,6)}...{address?.slice(-4)}</p>
               </div>
               <button onClick={disconnect} style={{ background:"none", border:"1px solid rgba(245,238,216,0.15)", color:"rgba(245,238,216,0.4)", padding:"8px 16px", cursor:"pointer", fontFamily:"monospace", fontSize:11 }}>DISCONNECT</button>
@@ -68,7 +68,7 @@ export default function App() {
               </p>
             </div>
             <div style={{ border:"1px solid rgba(245,238,216,0.08)", padding:20 }}>
-              <p style={{ fontFamily:"monospace", fontSize:10, color:"rgba(245,238,216,0.3)", marginBottom:8 }}>LIVE CONTRACT</p>
+              <p style={{ fontFamily:"monospace", fontSize:10, color:"rgba(245,238,216,0.3)", marginBottom:8 }}>LIVE CONTRACT - BASE MAINNET</p>
               <p style={{ fontFamily:"monospace", fontSize:11, color:"rgba(232,184,109,0.6)", wordBreak:"break-all" }}>{CONTRACTS.pachiPay}</p>
             </div>
           </div>
