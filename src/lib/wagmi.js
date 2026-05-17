@@ -4,13 +4,8 @@ import { injected, coinbaseWallet } from "wagmi/connectors"
 
 export const wagmiConfig = createConfig({
   chains: [base],
-  connectors: [
-    coinbaseWallet({ appName: "PachiPay" }),
-    injected({ shimDisconnect: true }),
-  ],
-  transports: {
-    [base.id]: http("https://mainnet.base.org"),
-  },
+  connectors: [coinbaseWallet({ appName: "PachiPay" }), injected({ shimDisconnect: true })],
+  transports: { [base.id]: http("https://mainnet.base.org") },
 })
 
 export const CONTRACTS = {
